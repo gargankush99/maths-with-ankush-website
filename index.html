@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;}
+  a{text-decoration:none;}
+  .lbl{font-family:'Source Sans 3',sans-serif;font-weight:600;letter-spacing:.22em;text-transform:uppercase;font-size:13px;}
+  html{scroll-behavior:smooth;}
+
+  @media (max-width: 1024px){
+    .m-hero{grid-template-columns:1fr !important; gap:44px !important; padding:64px 40px 72px !important;}
+    .m-about{grid-template-columns:1fr !important; gap:36px !important; padding:64px 40px !important;}
+    .m-contact{grid-template-columns:1fr !important; gap:40px !important;}
+    .m-tgrid,.m-rgrid{grid-template-columns:1fr 1fr !important;}
+    .m-gradephone{grid-template-columns:.8fr .8fr 1.4fr !important;}
+    .m-nav{display:none !important;}
+    .m-sec{padding-left:40px !important; padding-right:40px !important;}
+    .m-about-img{max-width:360px;}
+  }
+  @media (max-width: 640px){
+    .m-root h1{font-size:40px !important;}
+    .m-root h2{font-size:30px !important; line-height:1.16 !important;}
+    .m-hero{padding:44px 22px 52px !important; gap:34px !important;}
+    .m-hero-h1{font-size:40px !important;}
+    .m-about{padding:52px 22px !important;}
+    .m-contact{padding:40px 22px !important;}
+    .m-stats{grid-template-columns:repeat(2,1fr) !important;}
+    .m-stats > div{border-right:none !important; padding:22px 24px !important;}
+    .m-feat{grid-template-columns:1fr !important;}
+    .m-tgrid,.m-rgrid{grid-template-columns:1fr !important;}
+    .m-gradephone{grid-template-columns:1fr 1fr !important;}
+    .m-gradephone > div:last-child{grid-column:1 / -1;}
+    .m-reshead{flex-direction:column !important; align-items:flex-start !important; gap:12px !important;}
+    .m-sec{padding-left:22px !important; padding-right:22px !important;}
+    .m-pad{padding-top:56px !important; padding-bottom:56px !important;}
+    .m-footer{flex-direction:column !important; gap:8px !important; text-align:center !important; padding:26px 22px !important;}
+    .m-badge{left:12px !important; bottom:14px !important;}
+    .m-hero-p{font-size:17px !important;}
+  }
+</style>
+</helmet>
+
+<div class="m-root" style="width:100%; overflow-x:hidden; background:#fff; font-family:'Source Sans 3',sans-serif; color:#15223f;">
+
+  <!-- nav -->
+  <header class="m-header m-sec" style="position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:20px 64px; background:#1b2a4b;">
+    <a href="#top" onClick="{{ scrollTop }}" style="font-family:'Playfair Display',serif; color:#fff; font-size:22px; font-weight:700; cursor:pointer;">Maths with <span style="color:#ed9f17;">Ankush</span></a>
+    <nav class="m-nav" style="display:flex; gap:34px; font-weight:600; font-size:14.5px; color:#c3cad8;">
+      <a href="#about" style="color:#c3cad8;">About</a>
+      <a href="#results" style="color:#c3cad8;">What you get</a>
+      <a href="#resources" style="color:#c3cad8;">Resources</a>
+      <a href="#faq" style="color:#c3cad8;">FAQ</a>
+    </nav>
+    <a href="#contact" style="background:#ed9f17; color:#1b2a4b; font-weight:700; font-size:14.5px; padding:11px 22px; border-radius:4px;">Book free trial</a>
+  </header>
+
+  <!-- hero -->
+  <section class="m-hero m-sec" style="background:#1b2a4b; background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px); background-size:48px 48px; padding:90px 64px 100px; display:grid; grid-template-columns:1.15fr .85fr; gap:64px; align-items:center; max-width:1320px; margin:0 auto;">
+    <div>
+      <div class="lbl" style="color:#ed9f17; margin-bottom:24px;">Online Maths · Grade 9–12</div>
+      <h1 class="m-hero-h1" style="font-family:'Playfair Display',serif; color:#fff; font-size:68px; line-height:1.04; font-weight:700; margin:0 0 24px; letter-spacing:-.5px;">Where maths<br>finally <span style="color:#ed9f17; font-style:italic;">clicks.</span></h1>
+      <p class="m-hero-p" style="color:#c3cad8; font-size:19px; line-height:1.6; margin:0 0 36px; max-width:480px;">Small live batches of five. Concept-first teaching, class-wise notes for every chapter, and chapter-wise tests — so understanding comes before the exam, not after.</p>
+      <div style="display:flex; gap:14px; margin-bottom:32px; flex-wrap:wrap;">
+        <a href="#contact" style="background:#ed9f17; color:#1b2a4b; font-weight:700; font-size:16px; padding:16px 30px; border-radius:5px;">Book a free trial class</a>
+        <a href="https://wa.me/919811795980?text=Hi%20Ankush%21%20I%27d%20like%20to%20enquire%20about%20your%20Grade%209-12%20Maths%20classes.%20Could%20you%20share%20the%20batch%20timings%20and%20free%20trial%20details%3F" style="border:1.5px solid rgba(255,255,255,.32); color:#fff; font-weight:600; font-size:16px; padding:16px 28px; border-radius:5px;">WhatsApp +91 98117 95980</a>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; color:#9aa3b5; font-size:15px; font-style:italic; font-family:'Playfair Display',serif;">Limited seats — small batches, so every student gets seen.</div>
+    </div>
+    <div style="position:relative;">
+      <div style="position:absolute; inset:16px -16px -16px 16px; border:1.5px solid rgba(237,159,23,.55); border-radius:6px;"></div>
+      <div style="position:relative; border-radius:6px; overflow:hidden; aspect-ratio:3/3.5; box-shadow:0 24px 60px rgba(0,0,0,.4);">
+        <img src="assets/ankush.jpg" alt="Ankush Garg" style="width:100%; height:100%; object-fit:cover; object-position:center top; display:block;">
+      </div>
+      <div class="m-badge" style="position:absolute; left:-24px; bottom:36px; background:#fff; border-radius:6px; padding:14px 20px; box-shadow:0 12px 30px rgba(0,0,0,.28);">
+        <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:700; color:#1b2a4b; line-height:1;">5</div>
+        <div class="lbl" style="font-size:11px; color:#9b7a2e; margin-top:4px;">Students / batch</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- stat strip -->
+  <section class="m-stats" style="background:#15213d; display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid rgba(255,255,255,.08);">
+    <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+      <div style="padding:28px 40px; border-right:1px solid rgba(255,255,255,.08);">
+        <div style="font-family:'Playfair Display',serif; color:#ed9f17; font-size:32px; font-weight:700; line-height:1;">{{ s.n }}</div>
+        <div style="color:#aab2c4; font-size:14.5px; margin-top:8px;">{{ s.l }}</div>
+      </div>
+    </sc-for>
+  </section>
+
+  <!-- about -->
+  <section id="about" class="m-about m-sec" style="background:#faf7f0; padding:96px 64px; display:grid; grid-template-columns:.7fr 1.3fr; gap:60px; align-items:center; max-width:1320px; margin:0 auto;">
+    <div class="m-about-img" style="border-radius:6px; overflow:hidden; aspect-ratio:3/3.4; box-shadow:0 16px 40px rgba(27,42,75,.16); border:5px solid #fff;">
+      <img src="assets/ankush.jpg" alt="Ankush Garg" style="width:100%; height:100%; object-fit:cover; object-position:center top; display:block;">
+    </div>
+    <div>
+      <div class="lbl" style="color:#c08a1e; margin-bottom:16px;">Meet your teacher</div>
+      <h2 style="font-family:'Playfair Display',serif; font-size:46px; font-weight:700; margin:0 0 20px; color:#15223f;">Ankush Garg</h2>
+      <p style="font-size:19px; line-height:1.65; color:#51596b; margin:0 0 24px; max-width:580px;">10+ years teaching Grade 9–12 &amp; JEE Maths. Previously taught at FIITJEE, Aakash and other leading JEE coaching institutes — now teaching small batches directly.</p>
+      <div style="width:64px; height:2px; background:#ed9f17; margin:0 0 24px;"></div>
+      <p style="font-size:19px; line-height:1.65; color:#51596b; margin:0; max-width:580px;">An EdTech professional who builds structured learning — clear notes, regular tests, and a clear path for every student. The philosophy is simple: <span style="font-family:'Playfair Display',serif; font-style:italic; color:#15223f;">understanding, not memorising.</span></p>
+    </div>
+  </section>
+
+  <!-- features -->
+  <section id="results" class="m-sec m-pad" style="background:#1b2a4b; padding:90px 64px;">
+    <div style="text-align:center; margin-bottom:52px;">
+      <div class="lbl" style="color:#ed9f17; margin-bottom:14px;">What every student gets</div>
+      <h2 style="font-family:'Playfair Display',serif; font-size:44px; font-weight:700; color:#fff; margin:0;">Built for marks, not just hours</h2>
+    </div>
+    <div class="m-feat" style="display:grid; grid-template-columns:1fr 1fr; gap:18px 64px; max-width:880px; margin:0 auto;">
+      <sc-for list="{{ features }}" as="f" hint-placeholder-count="6">
+        <div style="display:flex; align-items:center; gap:16px; padding:18px 0; border-bottom:1px solid rgba(255,255,255,.10);">
+          <span style="flex:none; width:32px; height:32px; border-radius:50%; background:#ed9f17; display:flex; align-items:center; justify-content:center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b2a4b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+          </span>
+          <span style="color:#eef1f6; font-size:19px;">{{ f.text }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- approach band -->
+  <section class="m-sec m-pad" style="background:#f5edda; padding:64px; text-align:center;">
+    <div class="lbl" style="color:#c08a1e; margin-bottom:16px;">The approach</div>
+    <h2 style="font-family:'Playfair Display',serif; font-size:48px; font-weight:700; color:#15223f; margin:0 0 12px;">Understanding, not memorising</h2>
+    <p style="font-family:'Playfair Display',serif; font-style:italic; font-size:22px; color:#7b7460; margin:0;">Concepts first — every idea clicks before we move on.</p>
+  </section>
+
+  <!-- testimonials -->
+  <section class="m-sec m-pad" style="background:#faf7f0; padding:96px 64px; max-width:1320px; margin:0 auto;">
+    <div style="text-align:center; margin-bottom:52px;">
+      <div class="lbl" style="color:#c08a1e; margin-bottom:14px;">From students &amp; parents</div>
+      <h2 style="font-family:'Playfair Display',serif; font-size:44px; font-weight:700; color:#15223f; margin:0;">Marks change. So does the dread.</h2>
+    </div>
+    <div class="m-tgrid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:26px;">
+      <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="3">
+        <div style="background:#fff; border:1px solid #ece3d0; border-radius:8px; padding:34px 30px; box-shadow:0 8px 24px rgba(27,42,75,.05);">
+          <div style="font-family:'Playfair Display',serif; font-size:42px; color:#ed9f17; line-height:.6; height:24px;">“</div>
+          <p style="font-family:'Playfair Display',serif; font-size:21px; line-height:1.5; color:#15223f; margin:0 0 26px; font-style:italic;">{{ t.quote }}</p>
+          <div style="font-weight:700; font-size:15px; color:#15223f;">{{ t.name }}</div>
+          <div style="font-size:13.5px; color:#8a8270; margin-top:2px;">{{ t.meta }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- resources -->
+  <section id="resources" class="m-sec m-pad" style="background:#fff; padding:96px 64px; max-width:1320px; margin:0 auto;">
+    <div class="m-reshead" style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:44px; gap:24px;">
+      <div>
+        <div class="lbl" style="color:#c08a1e; margin-bottom:14px;">Free resources</div>
+        <h2 style="font-family:'Playfair Display',serif; font-size:44px; font-weight:700; color:#15223f; margin:0;">Start with these — on the house</h2>
+      </div>
+      <p style="font-size:16px; color:#6a7184; max-width:320px; margin:0;">A taste of the notes and tests every batch student gets all year.</p>
+    </div>
+    <div class="m-rgrid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+      <sc-for list="{{ resources }}" as="r" hint-placeholder-count="3">
+        <a href="#contact" style="display:block; border:1px solid #e7ddc8; border-radius:8px; padding:28px 26px; background:#faf7f0;" style-hover="border-color:#ed9f17; background:#fff;">
+          <div class="lbl" style="font-size:11px; color:#c08a1e; margin-bottom:14px;">{{ r.type }}</div>
+          <div style="font-family:'Playfair Display',serif; font-size:22px; font-weight:600; color:#15223f; margin-bottom:8px;">{{ r.title }}</div>
+          <div style="font-size:14.5px; color:#6a7184; line-height:1.5; margin-bottom:20px;">{{ r.desc }}</div>
+          <div style="font-weight:700; font-size:14px; color:#1b2a4b;">Download →</div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- faq -->
+  <section id="faq" class="m-sec m-pad" style="background:#faf7f0; padding:96px 64px;">
+    <h2 style="font-family:'Playfair Display',serif; font-size:44px; font-weight:700; color:#15223f; margin:0 0 44px; text-align:center;">Questions, answered</h2>
+    <div style="max-width:780px; margin:0 auto; display:flex; flex-direction:column; gap:12px;">
+      <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="6">
+        <div style="background:#fff; border:1px solid #ece3d0; border-radius:8px; overflow:hidden;">
+          <div onClick="{{ q.toggle }}" style="display:flex; align-items:center; justify-content:space-between; gap:20px; padding:23px 28px; cursor:pointer;">
+            <span style="font-size:18.5px; font-weight:600; color:#15223f;">{{ q.q }}</span>
+            <span style="flex:none; font-family:'Playfair Display',serif; font-size:28px; color:#ed9f17; line-height:1;">{{ q.sign }}</span>
+          </div>
+          <sc-if value="{{ q.open }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:0 28px 26px; font-size:17px; line-height:1.6; color:#51596b;">{{ q.a }}</div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- contact -->
+  <section id="contact" class="m-sec m-pad" style="background:#1b2a4b; background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px); background-size:48px 48px; padding:96px 64px;">
+    <div class="m-contact" style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; max-width:1200px; margin:0 auto;">
+      <div>
+        <div class="lbl" style="color:#ed9f17; margin-bottom:18px;">Book a free trial</div>
+        <h2 style="font-family:'Playfair Display',serif; font-size:50px; font-weight:700; color:#fff; line-height:1.08; margin:0 0 24px;">One free class.<br>No payment, no pressure.</h2>
+        <p style="font-size:19px; line-height:1.6; color:#c3cad8; margin:0 0 38px; max-width:430px;">Tell us the grade and we'll suggest a batch and a trial slot. Reply usually same day.</p>
+        <a href="https://wa.me/919811795980?text=Hi%20Ankush%21%20I%27d%20like%20to%20enquire%20about%20your%20Grade%209-12%20Maths%20classes.%20Could%20you%20share%20the%20batch%20timings%20and%20free%20trial%20details%3F" style="display:flex; align-items:center; gap:14px; color:#fff; width:fit-content;">
+          <span style="width:46px;height:46px;border-radius:8px;background:rgba(237,159,23,.16);display:flex;align-items:center;justify-content:center;font-size:22px;">💬</span>
+          <span><span style="display:block; font-size:13px; color:#9aa3b5;">WhatsApp / Call</span><span style="font-size:23px; font-weight:700; font-family:'Playfair Display',serif;">+91 98117 95980</span></span>
+        </a>
+        <div style="display:flex; align-items:center; gap:18px; margin-top:30px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:18px;">
+          <div ref="{{ qrRef }}" style="width:104px; height:104px; background:#fff; border-radius:8px; padding:8px; flex:none; display:flex; align-items:center; justify-content:center;"></div>
+          <div>
+            <div style="font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#fff; margin-bottom:5px;">Scan to chat on WhatsApp</div>
+            <div style="font-size:14.5px; color:#9aa3b5; line-height:1.45;">Opens a ready-to-send message — just hit send and we'll reply with batch timings &amp; trial details.</div>
+          </div>
+        </div>
+      </div>
+      <div style="background:#fff; border-radius:12px; padding:38px; box-shadow:0 24px 60px rgba(0,0,0,.32);">
+        <iframe ref="{{ iframeRef }}" name="sheet-submit-target" style="display:none;" title="submit target"></iframe>
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ submit }}" action="{{ sheetUrl }}" method="POST" target="sheet-submit-target">
+            <div style="display:grid; gap:16px;">
+              <div>
+                <label class="lbl" style="font-size:11px; color:#9b7a2e; display:block; margin-bottom:7px;">Student name</label>
+                <input ref="{{ nameRef }}" name="name" required placeholder="e.g. Aarav Sharma" style="width:100%; padding:14px 15px; border:1px solid #e0d8c6; border-radius:6px; font-size:16px; font-family:'Source Sans 3',sans-serif; color:#15223f;">
+              </div>
+              <div class="m-gradephone" style="display:grid; grid-template-columns:.62fr .58fr 1.4fr; gap:12px;">
+                <div>
+                  <label class="lbl" style="font-size:11px; color:#9b7a2e; display:block; margin-bottom:7px;">Grade</label>
+                  <select ref="{{ gradeRef }}" name="grade" required style="width:100%; padding:14px 10px; border:1px solid #e0d8c6; border-radius:6px; font-size:16px; font-family:'Source Sans 3',sans-serif; color:#15223f; background:#fff;">
+                    <option value="" disabled selected>Select</option>
+                    <sc-for list="{{ grades }}" as="g" hint-placeholder-count="4"><option>{{ g }}</option></sc-for>
+                  </select>
+                </div>
+                <div>
+                  <label class="lbl" style="font-size:11px; color:#9b7a2e; display:block; margin-bottom:7px;">Code</label>
+                  <select ref="{{ codeRef }}" name="countryCode" style="width:100%; padding:14px 8px; border:1px solid #e0d8c6; border-radius:6px; font-size:15px; font-family:'Source Sans 3',sans-serif; color:#15223f; background:#fff;">
+                    <sc-for list="{{ countryCodes }}" as="c" hint-placeholder-count="6"><option value="{{ c.code }}">{{ c.label }}</option></sc-for>
+                  </select>
+                </div>
+                <div>
+                  <label class="lbl" style="font-size:11px; color:#9b7a2e; display:block; margin-bottom:7px;">Phone / WhatsApp</label>
+                  <input ref="{{ phoneRef }}" name="phone" required placeholder="98117 95980" style="width:100%; padding:14px 15px; border:1px solid #e0d8c6; border-radius:6px; font-size:16px; font-family:'Source Sans 3',sans-serif; color:#15223f;">
+                </div>
+              </div>
+              <div>
+                <label class="lbl" style="font-size:11px; color:#9b7a2e; display:block; margin-bottom:7px;">Anything we should know? <span style="text-transform:none; letter-spacing:0; font-weight:400; color:#b3ac9c;">(optional)</span></label>
+                <textarea ref="{{ msgRef }}" name="message" rows="3" placeholder="Chapters they struggle with, preferred timings…" style="width:100%; padding:14px 15px; border:1px solid #e0d8c6; border-radius:6px; font-size:16px; font-family:'Source Sans 3',sans-serif; color:#15223f; resize:none;"></textarea>
+              </div>
+              <button type="submit" disabled="{{ sending }}" style="margin-top:4px; background:#ed9f17; color:#1b2a4b; font-weight:700; font-size:17px; padding:16px; border:none; border-radius:6px; cursor:pointer; font-family:'Source Sans 3',sans-serif;">{{ submitLabel }}</button>
+            </div>
+          </form>
+        </sc-if>
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align:center; padding:38px 10px;">
+            <div style="width:62px;height:62px;border-radius:50%;background:#ed9f17;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#1b2a4b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <h3 style="font-family:'Playfair Display',serif; font-size:28px; color:#15223f; margin:0 0 10px;">Request received!</h3>
+            <p style="font-size:16px; color:#6a7184; margin:0;">Ankush will message you on WhatsApp with a batch and trial slot — usually the same day.</p>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <!-- footer -->
+  <footer class="m-footer m-sec" style="background:#15213d; padding:32px 64px; display:flex; align-items:center; justify-content:space-between;">
+    <div style="font-family:'Playfair Display',serif; color:#fff; font-size:18px; font-weight:700;">Maths with <span style="color:#ed9f17;">Ankush</span></div>
+    <div style="color:#8993a8; font-size:14px;">Online Maths · Grade 9–12 · +91 98117 95980</div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { faq: 0, sent: false, sending: false, error: false };
+  waLink = "https://wa.me/919811795980?text=Hi%20Ankush%21%20I%27d%20like%20to%20enquire%20about%20your%20Grade%209-12%20Maths%20classes.%20Could%20you%20share%20the%20batch%20timings%20and%20free%20trial%20details%3F";
+  sheetUrl = "https://script.google.com/macros/s/AKfycbyB4HQ_Tiz41-QmBDS7t5okz60BD2ddmqqXPtB19zRcaxGFUycrXKgJBsXattLlrAoX8g/exec";
+
+  submitForm(e) {
+    // real form POST targeting the hidden iframe — let the browser submit it natively.
+    this.setState({ sending: true, error: false });
+    setTimeout(() => this.setState({ sending: false, sent: true }), 900);
+  }
+
+  toggle(i) {
+    this.setState(s => ({ faq: s.faq === i ? -1 : i }));
+  }
+
+  scrollTop(e) {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  componentDidMount() { this.renderQR(); }
+
+  renderQR() {
+    const el = this._qr;
+    if (!el) return;
+    if (!window.QRCode) { setTimeout(() => this.renderQR(), 150); return; }
+    if (this._qrDone) return;
+    el.innerHTML = "";
+    new window.QRCode(el, { text: this.waLink, width: 88, height: 88, colorDark: "#1b2a4b", colorLight: "#ffffff", correctLevel: window.QRCode.CorrectLevel.M });
+    this._qrDone = true;
+  }
+
+  renderVals() {
+    const faqData = [
+      { q: "How big are the batches?", a: "Maximum five students per batch. Small enough that everyone is asked, everyone answers, and no one hides at the back." },
+      { q: "Which grades do you teach?", a: "Maths for Grades 9 to 12, including foundation for JEE. Notes and tests are mapped chapter-by-chapter to the syllabus." },
+      { q: "Are classes live or recorded?", a: "Classes are always live — you can ask questions in real time. Notes are shared after each class for your reference." },
+      { q: "What exactly is the free trial?", a: "One full live class, no payment and no commitment. You sit in, see the teaching style, and decide afterwards." },
+      { q: "Do I get notes and tests?", a: "Yes — class-wise notes for every chapter, chapter-wise tests, and past papers with mock tests, all included." },
+      { q: "How do I get started?", a: "Fill the form or WhatsApp us. We'll suggest a batch that fits the grade and a slot for your free trial — usually the same day." }
+    ];
+    return {
+      stats: [
+        { n: "10+", l: "Years teaching" },
+        { n: "5", l: "Students per batch" },
+        { n: "9\u201312", l: "Grade levels" },
+        { n: "Live", l: "Interactive classes" }
+      ],
+      features: [
+        { text: "Max 5 students per batch" },
+        { text: "Concept-first, not rote" },
+        { text: "Class-wise notes, all chapters" },
+        { text: "Chapter-wise tests" },
+        { text: "Past papers & mock tests" },
+        { text: "Live, interactive classes" }
+      ],
+      testimonials: [
+        { quote: "Ankush sir made trigonometry actually make sense. I went from the 60s to 90+ in two terms.", name: "Aarav", meta: "Class 11" },
+        { quote: "Small batch means my daughter can't drift off. She finally asks questions instead of memorising.", name: "Meera S.", meta: "Parent, Class 10" },
+        { quote: "The chapter-wise tests kept me honest all year. I walked into the boards calm.", name: "Riya", meta: "Class 12" }
+      ],
+      resources: [
+        { type: "PDF · Class 10", title: "Class 10 Formula Sheet", desc: "Every formula for the Class 10 syllabus, on two clean pages." },
+        { type: "PDF · Class 12", title: "Calculus Cheat-Sheet", desc: "Limits, derivatives and integrals — the rules you keep forgetting." },
+        { type: "PDF · Sample", title: "Chapter-wise Test", desc: "A real chapter test with a worked solution key, exactly like in class." }
+      ],
+      grades: ["Grade 9", "Grade 10", "Grade 11", "Grade 12"],
+      countryCodes: [
+        { code: "+91", label: "🇮🇳 +91" },
+        { code: "+1", label: "🇺🇸 +1" },
+        { code: "+1", label: "🇨🇦 +1" },
+        { code: "+44", label: "🇬🇧 +44" },
+        { code: "+971", label: "🇦🇪 +971" },
+        { code: "+966", label: "🇸🇦 +966" },
+        { code: "+974", label: "🇶🇦 +974" },
+        { code: "+965", label: "🇰🇼 +965" },
+        { code: "+973", label: "🇧🇭 +973" },
+        { code: "+968", label: "🇴🇲 +968" },
+        { code: "+65", label: "🇸🇬 +65" },
+        { code: "+60", label: "🇲🇾 +60" },
+        { code: "+66", label: "🇹🇭 +66" },
+        { code: "+63", label: "🇵🇭 +63" },
+        { code: "+62", label: "🇮🇩 +62" },
+        { code: "+84", label: "🇻🇳 +84" },
+        { code: "+61", label: "🇦🇺 +61" },
+        { code: "+64", label: "🇳🇿 +64" },
+        { code: "+52", label: "🇲🇽 +52" },
+        { code: "+55", label: "🇧🇷 +55" },
+        { code: "+54", label: "🇦🇷 +54" },
+        { code: "+56", label: "🇨🇱 +56" },
+        { code: "+57", label: "🇨🇴 +57" },
+        { code: "+51", label: "🇵🇪 +51" },
+        { code: "+92", label: "🇵🇰 +92" },
+        { code: "+880", label: "🇧🇩 +880" },
+        { code: "+977", label: "🇳🇵 +977" },
+        { code: "+94", label: "🇱🇰 +94" },
+        { code: "+49", label: "🇩🇪 +49" },
+        { code: "+33", label: "🇫🇷 +33" },
+        { code: "+27", label: "🇿🇦 +27" }
+      ],
+      faqs: faqData.map((f, i) => ({
+        q: f.q,
+        a: f.a,
+        open: this.state.faq === i,
+        sign: this.state.faq === i ? "\u2013" : "+",
+        toggle: () => this.toggle(i)
+      })),
+      sent: this.state.sent,
+      notSent: !this.state.sent,
+      sending: this.state.sending,
+      submitLabel: this.state.sending ? "Sending…" : "Book my free trial",
+      submit: (e) => this.submitForm(e),
+      nameRef: (el) => { this._name = el; },
+      gradeRef: (el) => { this._grade = el; },
+      codeRef: (el) => { this._code = el; },
+      phoneRef: (el) => { this._phone = el; },
+      scrollTop: (e) => this.scrollTop(e),
+      msgRef: (el) => { this._msg = el; },
+      qrRef: (el) => { this._qr = el; this.renderQR(); },
+      iframeRef: (el) => { this._iframe = el; },
+      sheetUrl: this.sheetUrl
+    };
+  }
+}
+</script>
+</body>
+</html>
