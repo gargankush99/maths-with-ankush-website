@@ -168,7 +168,7 @@
     </div>
     <div class="m-rgrid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
       <sc-for list="{{ resources }}" as="r" hint-placeholder-count="3">
-        <a href="#contact" style="display:block; border:1px solid #e7ddc8; border-radius:8px; padding:28px 26px; background:#faf7f0;" style-hover="border-color:#ed9f17; background:#fff;">
+        <a href="{{ r.file }}" download style="display:block; border:1px solid #e7ddc8; border-radius:8px; padding:28px 26px; background:#faf7f0;" style-hover="border-color:#ed9f17; background:#fff;">
           <div class="lbl" style="font-size:11px; color:#c08a1e; margin-bottom:14px;">{{ r.type }}</div>
           <div style="font-family:'Playfair Display',serif; font-size:22px; font-weight:600; color:#15223f; margin-bottom:8px;">{{ r.title }}</div>
           <div style="font-size:14.5px; color:#6a7184; line-height:1.5; margin-bottom:20px;">{{ r.desc }}</div>
@@ -335,9 +335,9 @@ class Component extends DCLogic {
         { quote: "The chapter-wise tests kept me honest all year. I walked into the boards calm.", name: "Riya", meta: "Class 12" }
       ],
       resources: [
-        { type: "PDF · Class 10", title: "Class 10 Formula Sheet", desc: "Every formula for the Class 10 syllabus, on two clean pages." },
-        { type: "PDF · Class 12", title: "Calculus Cheat-Sheet", desc: "Limits, derivatives and integrals — the rules you keep forgetting." },
-        { type: "PDF · Sample", title: "Chapter-wise Test", desc: "A real chapter test with a worked solution key, exactly like in class." }
+        { type: "PDF · Grade 12", title: "Grade 12 Formula Sheet", desc: "Every formula for the Grade 12 syllabus, handwritten for quick revision.", file: "resources/grade-12-formula-sheet.pdf" }
+        // Add more resources here as they're ready — one object per file, same shape as above.
+        // file: path to the PDF inside the resources/ folder, relative to this page.
       ],
       grades: ["Grade 9", "Grade 10", "Grade 11", "Grade 12"],
       countryCodes: [
