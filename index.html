@@ -166,16 +166,34 @@
       </div>
       <p style="font-size:16px; color:#6a7184; max-width:320px; margin:0;">A taste of the notes and tests every batch student gets all year.</p>
     </div>
-    <div class="m-rgrid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
-      <sc-for list="{{ resources }}" as="r" hint-placeholder-count="3">
-        <a href="{{ r.file }}" download style="display:block; border:1px solid #e7ddc8; border-radius:8px; padding:28px 26px; background:#faf7f0;" style-hover="border-color:#ed9f17; background:#fff;">
-          <div class="lbl" style="font-size:11px; color:#c08a1e; margin-bottom:14px;">{{ r.type }}</div>
-          <div style="font-family:'Playfair Display',serif; font-size:22px; font-weight:600; color:#15223f; margin-bottom:8px;">{{ r.title }}</div>
-          <div style="font-size:14.5px; color:#6a7184; line-height:1.5; margin-bottom:20px;">{{ r.desc }}</div>
-          <div style="font-weight:700; font-size:14px; color:#1b2a4b;">Download →</div>
-        </a>
-      </sc-for>
+
+    <div style="display:flex; align-items:center; gap:14px; margin-bottom:28px;">
+      <label class="lbl" style="font-size:11px; color:#9b7a2e;">Filter by grade</label>
+      <select value="{{ selectedGrade }}" onChange="{{ setGrade }}" style="padding:11px 16px; border:1px solid #e0d8c6; border-radius:6px; font-size:15px; font-family:'Source Sans 3',sans-serif; color:#15223f; background:#fff; cursor:pointer;">
+        <option value="All">All grades</option>
+        <sc-for list="{{ resourceGrades }}" as="g" hint-placeholder-count="4">
+          <option value="{{ g }}">{{ g }}</option>
+        </sc-for>
+      </select>
     </div>
+
+    <sc-if value="{{ hasResources }}" hint-placeholder-val="{{ true }}">
+      <div class="m-rgrid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+        <sc-for list="{{ resources }}" as="r" hint-placeholder-count="3">
+          <a href="{{ r.file }}" download style="display:block; border:1px solid #e7ddc8; border-radius:8px; padding:28px 26px; background:#faf7f0;" style-hover="border-color:#ed9f17; background:#fff;">
+            <div class="lbl" style="font-size:11px; color:#c08a1e; margin-bottom:14px;">{{ r.type }}</div>
+            <div style="font-family:'Playfair Display',serif; font-size:22px; font-weight:600; color:#15223f; margin-bottom:8px;">{{ r.title }}</div>
+            <div style="font-size:14.5px; color:#6a7184; line-height:1.5; margin-bottom:20px;">{{ r.desc }}</div>
+            <div style="font-weight:700; font-size:14px; color:#1b2a4b;">Download →</div>
+          </a>
+        </sc-for>
+      </div>
+    </sc-if>
+    <sc-if value="{{ resourcesEmpty }}" hint-placeholder-val="{{ false }}">
+      <div style="text-align:center; padding:40px 20px; border:1px dashed #e0d8c6; border-radius:8px; color:#6a7184; font-size:16px;">
+        More resources for this grade are on the way — check back soon, or WhatsApp to ask directly.
+      </div>
+    </sc-if>
   </section>
 
   <!-- faq -->
@@ -274,7 +292,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { faq: 0, sent: false, sending: false, error: false };
+  state = { faq: 0, sent: false, sending: false, error: false, selectedGrade: "All" };
   waLink = "https://wa.me/919811795980?text=Hi%20Ankush%21%20I%27d%20like%20to%20enquire%20about%20your%20Grade%209-12%20Maths%20classes.%20Could%20you%20share%20the%20batch%20timings%20and%20free%20trial%20details%3F";
   sheetUrl = "https://script.google.com/macros/s/AKfycbyB4HQ_Tiz41-QmBDS7t5okz60BD2ddmqqXPtB19zRcaxGFUycrXKgJBsXattLlrAoX8g/exec";
 
@@ -286,6 +304,10 @@ class Component extends DCLogic {
 
   toggle(i) {
     this.setState(s => ({ faq: s.faq === i ? -1 : i }));
+  }
+
+  setGrade(e) {
+    this.setState({ selectedGrade: e.target.value });
   }
 
   scrollTop(e) {
@@ -314,6 +336,31 @@ class Component extends DCLogic {
       { q: "Do I get notes and tests?", a: "Yes — class-wise notes for every chapter, chapter-wise tests, and past papers with mock tests, all included." },
       { q: "How do I get started?", a: "Fill the form or WhatsApp us. We'll suggest a batch that fits the grade and a slot for your free trial — usually the same day." }
     ];
+    const resourcesAll = [
+      { type: "PDF · Grade 12", title: "Grade 12 Formula Sheet", desc: "Every formula for the Grade 12 syllabus, handwritten for quick revision.", file: "resources/grade-12-formula-sheet.pdf", grade: "Grade 12" },
+      { type: "PDF · Grade 10", title: "Grade 10 Formula Sheet", desc: "Every formula for the Grade 10 syllabus, handwritten for quick revision.", file: "resources/grade-10-formula-sheet.pdf", grade: "Grade 10" },
+      { type: "Chapter Test · Grade 11", title: "Sets", desc: "Chapter-wise test with a worked solution key.", file: "resources/grade-11-chapterwise-tests/01-sets.pdf", grade: "Grade 11" },
+      { type: "Chapter Test · Grade 11", title: "Relations and Functions", desc: "Chapter-wise test with a worked solution key.", file: "resources/grade-11-chapterwise-tests/02-relations-and-functions.pdf", grade: "Grade 11" },
+      { type: "Chapter Test · Grade 11", title: "Trigonometric Functions", desc: "Chapter-wise test with a worked solution key.", file: "resources/grade-11-chapterwise-tests/03-trigonometric-functions.pdf", grade: "Grade 11" },
+      { type: "Chapter Test · Grade 11", title: "Complex Numbers and Quadratic Equations", desc: "Chapter-wise test with a worked solution key.", file: "resources/grade-11-chapterwise-tests/04-complex-numbers-and-quadratic-equations.pdf", grade: "Grade 11" },
+      { type: "Chapter Test · Grade 11", title: "Linear Inequalities", desc: "Chapter-wise test with a worked solution key.", file: "resources/grade-11-chapterwise-tests/05-linear-inequalities.pdf", grade: "Grade 11" },
+      { type: "Chapter Test · Grade 11", title: "Permutations and Combinations", desc: "Chapter-wise test with a worked solution key.", file: "resources/grade-11-chapterwise-tests/06-permutations-and-combinations.pdf", grade: "Grade 11" },
+      { type: "Chapter Test · Grade 11", title: "Binomial Theorem", desc: "Chapter-wise test with a worked solution key.", file: "resources/grade-11-chapterwise-tests/07-binomial-theorem.pdf", grade: "Grade 11" },
+      { type: "Chapter Test · Grade 11", title: "Sequences and Series", desc: "Chapter-wise test with a worked solution key.", file: "resources/grade-11-chapterwise-tests/08-sequences-and-series.pdf", grade: "Grade 11" },
+      { type: "Chapter Test · Grade 11", title: "Straight Lines", desc: "Chapter-wise test with a worked solution key.", file: "resources/grade-11-chapterwise-tests/09-straight-lines.pdf", grade: "Grade 11" },
+      { type: "Chapter Test · Grade 11", title: "Conic Sections", desc: "Chapter-wise test with a worked solution key.", file: "resources/grade-11-chapterwise-tests/10-conic-sections.pdf", grade: "Grade 11" },
+      { type: "Chapter Test · Grade 11", title: "Introduction to 3D Geometry", desc: "Chapter-wise test with a worked solution key.", file: "resources/grade-11-chapterwise-tests/11-introduction-to-3d-geometry.pdf", grade: "Grade 11" },
+      { type: "Chapter Test · Grade 11", title: "Limits and Derivatives", desc: "Chapter-wise test with a worked solution key.", file: "resources/grade-11-chapterwise-tests/12-limits-and-derivatives.pdf", grade: "Grade 11" },
+      { type: "Chapter Test · Grade 11", title: "Statistics", desc: "Chapter-wise test with a worked solution key.", file: "resources/grade-11-chapterwise-tests/13-statistics.pdf", grade: "Grade 11" },
+      { type: "Chapter Test · Grade 11", title: "Probability", desc: "Chapter-wise test with a worked solution key.", file: "resources/grade-11-chapterwise-tests/14-probability.pdf", grade: "Grade 11" }
+      // Add more resources here as they're ready — one object per file, same shape as above.
+      // file: path to the PDF inside the resources/ folder, relative to this page.
+      // grade: must exactly match one of the values in resourceGrades below, so the dropdown filter finds it.
+    ];
+    const selectedGrade = this.state.selectedGrade || "All";
+    const resourcesFiltered = selectedGrade === "All"
+      ? resourcesAll
+      : resourcesAll.filter(r => r.grade === selectedGrade);
     return {
       stats: [
         { n: "10+", l: "Years teaching" },
@@ -334,12 +381,12 @@ class Component extends DCLogic {
         { quote: "Small batch means my daughter can't drift off. She finally asks questions instead of memorising.", name: "Meera S.", meta: "Parent, Class 10" },
         { quote: "The chapter-wise tests kept me honest all year. I walked into the boards calm.", name: "Riya", meta: "Class 12" }
       ],
-      resources: [
-        { type: "PDF · Grade 12", title: "Grade 12 Formula Sheet", desc: "Every formula for the Grade 12 syllabus, handwritten for quick revision.", file: "resources/grade-12-formula-sheet.pdf" },
-        { type: "PDF · Grade 10", title: "Grade 10 Formula Sheet", desc: "Every formula for the Grade 10 syllabus, handwritten for quick revision.", file: "resources/grade-10-formula-sheet.pdf" }
-        // Add more resources here as they're ready — one object per file, same shape as above.
-        // file: path to the PDF inside the resources/ folder, relative to this page.
-      ],
+      resources: resourcesFiltered,
+      hasResources: resourcesFiltered.length > 0,
+      resourcesEmpty: resourcesFiltered.length === 0,
+      selectedGrade: selectedGrade,
+      resourceGrades: ["Grade 9", "Grade 10", "Grade 11", "Grade 12"],
+      setGrade: (e) => this.setGrade(e),
       grades: ["Grade 9", "Grade 10", "Grade 11", "Grade 12"],
       countryCodes: [
         { code: "+91", label: "🇮🇳 +91" },
