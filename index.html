@@ -19,6 +19,11 @@
   a{text-decoration:none;}
   .lbl{font-family:'Source Sans 3',sans-serif;font-weight:600;letter-spacing:.22em;text-transform:uppercase;font-size:13px;}
   html{scroll-behavior:smooth;}
+  .m-navdrop{position:relative;}
+  .m-navdrop-menu{display:none; position:absolute; top:100%; left:50%; transform:translateX(-50%); margin-top:14px; background:#fff; border-radius:8px; box-shadow:0 16px 40px rgba(0,0,0,.22); min-width:150px; overflow:hidden; z-index:60;}
+  .m-navdrop:hover .m-navdrop-menu{display:block;}
+  .m-navdrop-menu a{display:block; padding:12px 20px; color:#15223f; font-size:14px; font-weight:600;}
+  .m-navdrop-menu a:hover{background:#faf7f0;}
 
   @media (max-width: 1024px){
     .m-hero{grid-template-columns:1fr !important; gap:44px !important; padding:64px 40px 72px !important;}
@@ -61,13 +66,15 @@
     <nav class="m-nav" style="display:flex; gap:34px; font-weight:600; font-size:14.5px; color:#c3cad8;">
       <a href="#about" style="color:#c3cad8;">About</a>
       <a href="#results" style="color:#c3cad8;">What you get</a>
-      <select onChange="{{ navGrade }}" style="background:transparent; border:none; color:#c3cad8; font-weight:600; font-size:14.5px; font-family:'Source Sans 3',sans-serif; cursor:pointer;">
-        <option value="" style="color:#15223f;">Resources ▾</option>
-        <option value="grade-9.html" style="color:#15223f;">Grade 9</option>
-        <option value="grade-10.html" style="color:#15223f;">Grade 10</option>
-        <option value="grade-11.html" style="color:#15223f;">Grade 11</option>
-        <option value="grade-12.html" style="color:#15223f;">Grade 12</option>
-      </select>
+      <div class="m-navdrop">
+        <span style="cursor:pointer;">Resources ▾</span>
+        <div class="m-navdrop-menu">
+          <a href="grade-9.html">Grade 9</a>
+          <a href="grade-10.html">Grade 10</a>
+          <a href="grade-11.html">Grade 11</a>
+          <a href="grade-12.html">Grade 12</a>
+        </div>
+      </div>
       <a href="#faq" style="color:#c3cad8;">FAQ</a>
     </nav>
     <a href="#contact" style="background:#ed9f17; color:#1b2a4b; font-weight:700; font-size:14.5px; padding:11px 22px; border-radius:4px;">Book free trial</a>
@@ -317,11 +324,6 @@ class Component extends DCLogic {
     this.setState({ selectedGrade: e.target.value });
   }
 
-  navGrade(e) {
-    const url = e.target.value;
-    if (url) window.location.href = url;
-  }
-
   scrollTop(e) {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -382,7 +384,6 @@ class Component extends DCLogic {
       selectedGrade: selectedGrade,
       resourceGrades: ["Grade 9", "Grade 10", "Grade 11", "Grade 12"],
       setGrade: (e) => this.setGrade(e),
-      navGrade: (e) => this.navGrade(e),
       grades: ["Grade 9", "Grade 10", "Grade 11", "Grade 12"],
       countryCodes: [
         { code: "+91", label: "🇮🇳 +91" },
