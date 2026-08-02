@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grade 10 Resources — Maths with Ankush</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<script src="resources-data.js"></script>
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;}
+  a{text-decoration:none;}
+  .lbl{font-family:'Source Sans 3',sans-serif;font-weight:600;letter-spacing:.22em;text-transform:uppercase;font-size:13px;}
+  select.gradenav{background:transparent; border:none; color:#c3cad8; font-weight:600; font-size:14.5px; font-family:'Source Sans 3',sans-serif; cursor:pointer;}
+  select.gradenav option{color:#15223f;}
+  @media (max-width: 720px){
+    .rgrid{grid-template-columns:1fr !important;}
+    header nav{display:none !important;}
+    main{padding:44px 22px !important;}
+  }
+</style>
+</head>
+<body style="width:100%; overflow-x:hidden; background:#fff; font-family:'Source Sans 3',sans-serif; color:#15223f;">
+
+  <header style="position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:20px 64px; background:#1b2a4b;">
+    <a href="index.html" style="font-family:'Playfair Display',serif; color:#fff; font-size:22px; font-weight:700;">Maths with <span style="color:#ed9f17;">Ankush</span></a>
+    <nav style="display:flex; align-items:center; gap:34px; font-weight:600; font-size:14.5px; color:#c3cad8;">
+      <a href="index.html#about" style="color:#c3cad8;">About</a>
+      <a href="index.html#results" style="color:#c3cad8;">What you get</a>
+      <select class="gradenav" onchange="if(this.value) location.href=this.value">
+        <option value="">Resources ▾</option>
+        <option value="grade-9.html" >Grade 9</option>
+        <option value="grade-10.html" selected>Grade 10</option>
+        <option value="grade-11.html" >Grade 11</option>
+        <option value="grade-12.html" >Grade 12</option>
+      </select>
+      <a href="index.html#faq" style="color:#c3cad8;">FAQ</a>
+    </nav>
+    <a href="index.html#contact" style="background:#ed9f17; color:#1b2a4b; font-weight:700; font-size:14.5px; padding:11px 22px; border-radius:4px;">Book free trial</a>
+  </header>
+
+  <main style="max-width:1100px; margin:0 auto; padding:64px 64px 96px;">
+    <a href="index.html" style="display:inline-block; margin-bottom:28px; color:#9b7a2e; font-weight:600; font-size:14.5px;">&larr; Back to home</a>
+    <div class="lbl" style="color:#c08a1e; margin-bottom:14px;">Free resources</div>
+    <h1 style="font-family:'Playfair Display',serif; font-size:42px; font-weight:700; color:#15223f; margin:0 0 40px;">Grade 10 Resources</h1>
+    <div id="grid" class="rgrid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;"></div>
+  </main>
+
+  <footer style="background:#15213d; padding:32px 64px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+    <div style="font-family:'Playfair Display',serif; color:#fff; font-size:18px; font-weight:700;">Maths with <span style="color:#ed9f17;">Ankush</span></div>
+    <div style="color:#8993a8; font-size:14px;">Online Maths &middot; Grade 9&ndash;12 &middot; +91 98117 95980</div>
+  </footer>
+
+<script>
+(function() {
+  var grid = document.getElementById('grid');
+  var items = (window.RESOURCES || []).filter(function(r) { return r.grade === "Grade 10"; });
+  if (items.length === 0) {
+    grid.outerHTML = '<div style="grid-column:1/-1; text-align:center; padding:48px 20px; border:1px dashed #e0d8c6; border-radius:8px; color:#6a7184; font-size:16px;">More resources for Grade 10 are on the way — check back soon, or WhatsApp to ask directly.</div>';
+    return;
+  }
+  grid.innerHTML = items.map(function(r) {
+    return '<a href="' + r.file + '" download style="display:block; border:1px solid #e7ddc8; border-radius:8px; padding:28px 26px; background:#faf7f0;">' +
+      '<div class="lbl" style="font-size:11px; color:#c08a1e; margin-bottom:14px;">' + r.type + '</div>' +
+      '<div style="font-family:\'Playfair Display\',serif; font-size:22px; font-weight:600; color:#15223f; margin-bottom:8px;">' + r.title + '</div>' +
+      '<div style="font-size:14.5px; color:#6a7184; line-height:1.5; margin-bottom:20px;">' + r.desc + '</div>' +
+      '<div style="font-weight:700; font-size:14px; color:#1b2a4b;">Download &rarr;</div>' +
+    '</a>';
+  }).join('');
+})();
+</script>
+</body>
+</html>
