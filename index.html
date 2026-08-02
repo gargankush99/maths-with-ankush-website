@@ -20,7 +20,8 @@
   .lbl{font-family:'Source Sans 3',sans-serif;font-weight:600;letter-spacing:.22em;text-transform:uppercase;font-size:13px;}
   html{scroll-behavior:smooth;}
   .m-navdrop{position:relative;}
-  .m-navdrop-menu{display:none; position:absolute; top:100%; left:50%; transform:translateX(-50%); margin-top:14px; background:#fff; border-radius:8px; box-shadow:0 16px 40px rgba(0,0,0,.22); min-width:150px; overflow:hidden; z-index:60;}
+  .m-navdrop-menu{display:none; position:absolute; top:100%; left:50%; transform:translateX(-50%); margin-top:0; padding-top:14px; background:transparent; z-index:60;}
+  .m-navdrop-menu > div{background:#fff; border-radius:8px; box-shadow:0 16px 40px rgba(0,0,0,.22); min-width:150px; overflow:hidden;}
   .m-navdrop:hover .m-navdrop-menu{display:block;}
   .m-navdrop-menu a{display:block; padding:12px 20px; color:#15223f; font-size:14px; font-weight:600;}
   .m-navdrop-menu a:hover{background:#faf7f0;}
@@ -69,10 +70,12 @@
       <div class="m-navdrop">
         <span style="cursor:pointer;">Resources ▾</span>
         <div class="m-navdrop-menu">
-          <a href="grade-9.html">Grade 9</a>
-          <a href="grade-10.html">Grade 10</a>
-          <a href="grade-11.html">Grade 11</a>
-          <a href="grade-12.html">Grade 12</a>
+          <div>
+            <a href="grade-9.html">Grade 9</a>
+            <a href="grade-10.html">Grade 10</a>
+            <a href="grade-11.html">Grade 11</a>
+            <a href="grade-12.html">Grade 12</a>
+          </div>
         </div>
       </div>
       <a href="#faq" style="color:#c3cad8;">FAQ</a>
