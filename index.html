@@ -215,42 +215,37 @@
   </section>
 
   <!-- resources -->
-  <section id="resources" class="m-sec m-pad" style="background:#fff; padding:96px 64px; max-width:1320px; margin:0 auto;">
-    <div class="m-reshead" style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:44px; gap:24px;">
+  <section id="resources" class="m-sec m-pad" style="background:#fff; padding:72px 64px 88px; max-width:1320px; margin:0 auto;">
+    <div class="m-reshead" style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:30px; gap:20px; flex-wrap:wrap;">
       <div>
-        <div class="lbl" style="color:#c08a1e; margin-bottom:14px;">Free resources</div>
-        <h2 style="font-family:'Playfair Display',serif; font-size:44px; font-weight:700; color:#15223f; margin:0;">Start with these — on the house</h2>
+        <div class="lbl" style="color:#c08a1e; margin-bottom:12px;">Free resources</div>
+        <h2 style="font-family:'Playfair Display',serif; font-size:38px; font-weight:700; color:#15223f; margin:0;">A quick taste of what your child will get</h2>
       </div>
-      <p style="font-size:16px; color:#6a7184; max-width:320px; margin:0;">A taste of the notes and tests every batch student gets all year.</p>
+      <a href="resources.html" style="background:#1b2a4b; color:#fff; font-weight:700; font-size:15px; padding:13px 20px; border-radius:6px;">View all resources</a>
     </div>
 
-    <div style="display:flex; align-items:center; gap:14px; margin-bottom:28px;">
-      <label class="lbl" style="font-size:11px; color:#9b7a2e;">Filter by grade</label>
-      <select value="{{ selectedGrade }}" onChange="{{ setGrade }}" style="padding:11px 16px; border:1px solid #e0d8c6; border-radius:6px; font-size:15px; font-family:'Source Sans 3',sans-serif; color:#15223f; background:#fff; cursor:pointer;">
-        <option value="All">All grades</option>
-        <sc-for list="{{ resourceGrades }}" as="g" hint-placeholder-count="4">
-          <option value="{{ g }}">{{ g }}</option>
-        </sc-for>
-      </select>
-    </div>
+    <p style="font-size:17px; line-height:1.6; color:#6a7184; max-width:700px; margin:0 0 28px;">A few starter resources to help students feel the quality of teaching before they commit to a batch.</p>
 
-    <sc-if value="{{ hasResources }}" hint-placeholder-val="{{ true }}">
-      <div class="m-rgrid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
-        <sc-for list="{{ resources }}" as="r" hint-placeholder-count="3">
-          <a href="{{ r.file }}" download style="display:block; border:1px solid #e7ddc8; border-radius:8px; padding:28px 26px; background:#faf7f0;" style-hover="border-color:#ed9f17; background:#fff;">
-            <div class="lbl" style="font-size:11px; color:#c08a1e; margin-bottom:14px;">{{ r.type }}</div>
-            <div style="font-family:'Playfair Display',serif; font-size:22px; font-weight:600; color:#15223f; margin-bottom:8px;">{{ r.title }}</div>
-            <div style="font-size:14.5px; color:#6a7184; line-height:1.5; margin-bottom:20px;">{{ r.desc }}</div>
-            <div style="font-weight:700; font-size:14px; color:#1b2a4b;">Download →</div>
-          </a>
-        </sc-for>
-      </div>
-    </sc-if>
-    <sc-if value="{{ resourcesEmpty }}" hint-placeholder-val="{{ false }}">
-      <div style="text-align:center; padding:40px 20px; border:1px dashed #e0d8c6; border-radius:8px; color:#6a7184; font-size:16px;">
-        More resources for this grade are on the way — check back soon, or WhatsApp to ask directly.
-      </div>
-    </sc-if>
+    <div class="m-rgrid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+      <a href="resources.html" style="display:block; border:1px solid #e7ddc8; border-radius:10px; padding:26px 22px; background:#faf7f0; transition:all .2s ease;">
+        <div class="lbl" style="font-size:11px; color:#c08a1e; margin-bottom:12px;">Grade 9</div>
+        <div style="font-family:'Playfair Display',serif; font-size:22px; font-weight:600; color:#15223f; margin-bottom:8px;">Foundation notes</div>
+        <div style="font-size:15px; color:#6a7184; line-height:1.5; margin-bottom:16px;">Starter chapter notes and revision material for a strong maths base.</div>
+        <div style="font-weight:700; font-size:14px; color:#1b2a4b;">Open resources →</div>
+      </a>
+      <a href="resources.html" style="display:block; border:1px solid #e7ddc8; border-radius:10px; padding:26px 22px; background:#faf7f0; transition:all .2s ease;">
+        <div class="lbl" style="font-size:11px; color:#c08a1e; margin-bottom:12px;">Grade 10</div>
+        <div style="font-family:'Playfair Display',serif; font-size:22px; font-weight:600; color:#15223f; margin-bottom:8px;">Key formula sheets</div>
+        <div style="font-size:15px; color:#6a7184; line-height:1.5; margin-bottom:16px;">Revision sheets that make difficult chapters easier to recall in exams.</div>
+        <div style="font-weight:700; font-size:14px; color:#1b2a4b;">Open resources →</div>
+      </a>
+      <a href="resources.html" style="display:block; border:1px solid #e7ddc8; border-radius:10px; padding:26px 22px; background:#faf7f0; transition:all .2s ease;">
+        <div class="lbl" style="font-size:11px; color:#c08a1e; margin-bottom:12px;">Grade 11</div>
+        <div style="font-family:'Playfair Display',serif; font-size:22px; font-weight:600; color:#15223f; margin-bottom:8px;">Practice sets</div>
+        <div style="font-size:15px; color:#6a7184; line-height:1.5; margin-bottom:16px;">Chapter-wise practice and mock-style tests to build confidence early.</div>
+        <div style="font-weight:700; font-size:14px; color:#1b2a4b;">Open resources →</div>
+      </a>
+    </div>
   </section>
 
   <!-- faq -->
