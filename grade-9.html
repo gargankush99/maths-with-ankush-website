@@ -15,6 +15,9 @@
   .lbl{font-family:'Source Sans 3',sans-serif;font-weight:600;letter-spacing:.22em;text-transform:uppercase;font-size:13px;}
   select.gradenav{background:transparent; border:none; color:#c3cad8; font-weight:600; font-size:14.5px; font-family:'Source Sans 3',sans-serif; cursor:pointer;}
   select.gradenav option{color:#15223f;}
+  .rsection{margin-bottom:52px;}
+  .rsection:last-child{margin-bottom:0;}
+  .rsection-head{color:#c08a1e; margin-bottom:18px;}
   @media (max-width: 720px){
     .rgrid{grid-template-columns:1fr !important;}
     header nav{display:none !important;}
@@ -45,7 +48,7 @@
     <a href="index.html" style="display:inline-block; margin-bottom:28px; color:#9b7a2e; font-weight:600; font-size:14.5px;">&larr; Back to home</a>
     <div class="lbl" style="color:#c08a1e; margin-bottom:14px;">Free resources</div>
     <h1 style="font-family:'Playfair Display',serif; font-size:42px; font-weight:700; color:#15223f; margin:0 0 40px;">Grade 9 Resources</h1>
-    <div id="grid" class="rgrid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;"></div>
+    <div id="grid"></div>
   </main>
 
   <footer style="background:#15213d; padding:32px 64px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
@@ -57,17 +60,37 @@
 (function() {
   var grid = document.getElementById('grid');
   var items = (window.RESOURCES || []).filter(function(r) { return r.grade === "Grade 9"; });
+
   if (items.length === 0) {
-    grid.outerHTML = '<div style="grid-column:1/-1; text-align:center; padding:48px 20px; border:1px dashed #e0d8c6; border-radius:8px; color:#6a7184; font-size:16px;">More resources for Grade 9 are on the way — check back soon, or WhatsApp to ask directly.</div>';
+    grid.innerHTML = '<div style="text-align:center; padding:48px 20px; border:1px dashed #e0d8c6; border-radius:8px; color:#6a7184; font-size:16px;">More resources for Grade 9 are on the way — check back soon, or WhatsApp to ask directly.</div>';
     return;
   }
-  grid.innerHTML = items.map(function(r) {
+
+  // Group into labeled sub-sections (e.g. "Formula Sheet", "Chapter-wise Notes"),
+  // keeping sections in the order they first appear in resources-data.js.
+  var order = [];
+  var bySection = {};
+  items.forEach(function(r) {
+    var sec = r.section || "Resources";
+    if (!bySection[sec]) { bySection[sec] = []; order.push(sec); }
+    bySection[sec].push(r);
+  });
+
+  function cardHtml(r) {
     return '<a href="' + r.file + '" download style="display:block; border:1px solid #e7ddc8; border-radius:8px; padding:28px 26px; background:#faf7f0;">' +
       '<div class="lbl" style="font-size:11px; color:#c08a1e; margin-bottom:14px;">' + r.type + '</div>' +
       '<div style="font-family:\'Playfair Display\',serif; font-size:22px; font-weight:600; color:#15223f; margin-bottom:8px;">' + r.title + '</div>' +
       '<div style="font-size:14.5px; color:#6a7184; line-height:1.5; margin-bottom:20px;">' + r.desc + '</div>' +
       '<div style="font-weight:700; font-size:14px; color:#1b2a4b;">Download &rarr;</div>' +
     '</a>';
+  }
+
+  grid.innerHTML = order.map(function(sec) {
+    var cards = bySection[sec].map(cardHtml).join('');
+    return '<div class="rsection">' +
+      '<div class="lbl rsection-head">' + sec + '</div>' +
+      '<div class="rgrid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">' + cards + '</div>' +
+    '</div>';
   }).join('');
 })();
 </script>
