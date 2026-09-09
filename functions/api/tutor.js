@@ -1,18 +1,22 @@
 // Cloudflare Pages Function: POST /api/tutor
 // Proxies chat messages to the Claude API so the Anthropic key never
-// reaches the browser. Requires:
-//   - Environment variable/secret: ANTHROPIC_API_KEY
-//   - (Optional but recommended) KV namespace binding: TUTOR_KV
-//     used for a simple per-email daily question cap.
+// reaches the browser. Requires the student to have already completed
+// email OTP verification (see /api/otp-start and /api/otp-verify) —
+// this function trusts only the signed session token, not raw
+// name/email/phone fields from the client.
 //
-// Set these in the Cloudflare dashboard:
-//   Workers & Pages -> maths-with-ankush -> Settings -> Environment variables
-//   Workers & Pages -> maths-with-ankush -> Settings -> Functions -> KV namespace bindings
+// Environment variables/secrets required (Cloudflare dashboard):
+//   ANTHROPIC_API_KEY   - your Claude API key
+//   OTP_SIGNING_SECRET  - any long random string, must match otp-verify.js
+// KV namespace binding required:
+//   TUTOR_KV            - used for OTP codes, cooldowns, and daily message caps
+
+import { verifyToken } from "./_shared/token.js";
 
 const MODEL = "claude-haiku-4-5";
 const MAX_TOKENS = 700;
-const DAILY_MESSAGE_CAP = 40; // per student email, resets ~daily
-const MAX_HISTORY_MESSAGES = 16; // keep the payload (and cost) bounded
+const DAILY_MESSAGE_CAP = 20; // per email AND per phone number
+const MAX_HISTORY_MESSAGES = 16;
 const MAX_MESSAGE_CHARS = 1500;
 
 const SYSTEM_PROMPT = `You are the AI Maths Tutor on Ankush Garg's tutoring website, "Maths with Ankush" (maths-with-ankush.gargankush99.workers.dev). Ankush teaches Grade 9-12 Mathematics (CBSE, ICSE, IB, IGCSE, and JEE preparation).
@@ -31,6 +35,8 @@ Your job:
 export async function onRequestPost(context) {
   const { request, env } = context;
 
+  if (!env.OTP_SIGNING_SECRET) return json({ error: "Server not configured." }, 500);
+
   let body;
   try {
     body = await request.json();
@@ -38,40 +44,48 @@ export async function onRequestPost(context) {
     return json({ error: "Invalid request." }, 400);
   }
 
-  const name = String(body.name || "").trim().slice(0, 100);
-  const email = String(body.email || "").trim().toLowerCase().slice(0, 200);
+  const session = await verifyToken(body.token, env.OTP_SIGNING_SECRET);
+  if (!session) {
+    return json({ error: "Your session has expired or is invalid — please verify your email again.", code: "REVERIFY" }, 401);
+  }
+
+  const email = session.email;
+  const phone = session.phone;
   const grade = String(body.grade || "").trim().slice(0, 20);
   const incomingMessages = Array.isArray(body.messages) ? body.messages : [];
 
-  if (!name || !email || !email.includes("@")) {
-    return json({ error: "Please enter your name and a valid email to use the AI tutor." }, 400);
-  }
   if (incomingMessages.length === 0) {
     return json({ error: "No message provided." }, 400);
   }
 
-  // --- Simple daily rate limit per email, via KV (skipped if TUTOR_KV isn't bound) ---
+  // --- Daily rate limit: per email AND per phone number, whichever is hit first ---
   if (env.TUTOR_KV) {
     const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD (UTC)
-    const kvKey = `rl:${email}:${today}`;
-    const current = parseInt((await env.TUTOR_KV.get(kvKey)) || "0", 10);
-    if (current >= DAILY_MESSAGE_CAP) {
+    const emailKey = `rl:email:${email}:${today}`;
+    const phoneKey = `rl:phone:${phone}:${today}`;
+    const [emailCount, phoneCount] = await Promise.all([
+      env.TUTOR_KV.get(emailKey).then((v) => parseInt(v || "0", 10)),
+      env.TUTOR_KV.get(phoneKey).then((v) => parseInt(v || "0", 10)),
+    ]);
+    if (emailCount >= DAILY_MESSAGE_CAP || phoneCount >= DAILY_MESSAGE_CAP) {
       return json(
         {
           error:
-            "You've reached today's question limit on the free AI tutor. Please try again tomorrow, or message Ankush directly on WhatsApp for anything urgent.",
+            "You've reached today's question limit on the free AI tutor (20/day). Please try again tomorrow, or message Ankush directly on WhatsApp for anything urgent.",
         },
         429
       );
     }
-    await env.TUTOR_KV.put(kvKey, String(current + 1), { expirationTtl: 60 * 60 * 26 });
+    await Promise.all([
+      env.TUTOR_KV.put(emailKey, String(emailCount + 1), { expirationTtl: 60 * 60 * 26 }),
+      env.TUTOR_KV.put(phoneKey, String(phoneCount + 1), { expirationTtl: 60 * 60 * 26 }),
+    ]);
   }
 
   if (!env.ANTHROPIC_API_KEY) {
     return json({ error: "AI tutor is not configured yet. Please try again later." }, 500);
   }
 
-  // --- Trim & sanitise conversation history to keep tokens (and cost) bounded ---
   const trimmed = incomingMessages
     .filter((m) => m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string")
     .slice(-MAX_HISTORY_MESSAGES)
@@ -120,8 +134,5 @@ export async function onRequestGet() {
 }
 
 function json(obj, status = 200) {
-  return new Response(JSON.stringify(obj), {
-    status,
-    headers: { "content-type": "application/json" },
-  });
+  return new Response(JSON.stringify(obj), { status, headers: { "content-type": "application/json" } });
 }
