@@ -3,6 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KZCZ2Z6FZ2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KZCZ2Z6FZ2');
+</script>
 <script src="./resources-data.js"></script>
 <script src="./support.js"></script>
 </head>
@@ -96,7 +104,7 @@
       </div>
       <a href="#faq" style="color:#c3cad8;">FAQ</a>
     </nav>
-    <a class="m-header-cta" href="#contact" style="background:#ed9f17; color:#1b2a4b; font-weight:700; font-size:14.5px; padding:11px 22px; border-radius:4px;">Book free trial</a>
+    <a class="m-header-cta" href="#contact" onclick="gtag('event','select_content',{content_type:'cta',cta_id:'header_book_trial'});" style="background:#ed9f17; color:#1b2a4b; font-weight:700; font-size:14.5px; padding:11px 22px; border-radius:4px;">Book free trial</a>
 
     <input class="m-mobile-toggle" type="checkbox" id="m-mobile-toggle" aria-label="Toggle mobile menu">
     <label class="m-menu-toggle" for="m-mobile-toggle" aria-label="Toggle menu">☰</label>
@@ -115,7 +123,7 @@
         </div>
       </div>
       <a href="#faq">FAQ</a>
-      <a href="#contact">Book free trial</a>
+      <a href="#contact" onclick="gtag('event','select_content',{content_type:'cta',cta_id:'header_book_trial_mobile'});">Book free trial</a>
     </nav>
   </header>
 
@@ -127,8 +135,8 @@
       <h1 class="m-hero-h1" style="font-family:'Playfair Display',serif; color:#fff; font-size:68px; line-height:1.04; font-weight:700; margin:0 0 24px; letter-spacing:-.5px;">Where maths<br>finally <span style="color:#ed9f17; font-style:italic;">clicks.</span></h1>
       <p class="m-hero-p" style="color:#c3cad8; font-size:19px; line-height:1.6; margin:0 0 36px; max-width:480px;">Small live batches of five. Concept-first teaching, class-wise notes for every chapter, and chapter-wise tests — so understanding comes before the exam, not after.</p>
       <div style="display:flex; gap:14px; margin-bottom:32px; flex-wrap:wrap;">
-        <a href="#contact" style="background:#ed9f17; color:#1b2a4b; font-weight:700; font-size:16px; padding:16px 30px; border-radius:5px;">Book a free trial class</a>
-        <a href="https://wa.me/919811795980?text=Hi%20Ankush%21%20I%27d%20like%20to%20enquire%20about%20your%20Grade%209-12%20Maths%20classes.%20Could%20you%20share%20the%20batch%20timings%20and%20free%20trial%20details%3F" style="border:1.5px solid rgba(255,255,255,.32); color:#fff; font-weight:600; font-size:16px; padding:16px 28px; border-radius:5px;">WhatsApp +91 98117 95980</a>
+        <a href="#contact" onclick="gtag('event','select_content',{content_type:'cta',cta_id:'hero_book_trial'});" style="background:#ed9f17; color:#1b2a4b; font-weight:700; font-size:16px; padding:16px 30px; border-radius:5px;">Book a free trial class</a>
+        <a href="https://wa.me/919811795980?text=Hi%20Ankush%21%20I%27d%20like%20to%20enquire%20about%20your%20Grade%209-12%20Maths%20classes.%20Could%20you%20share%20the%20batch%20timings%20and%20free%20trial%20details%3F" onclick="gtag('event','contact_whatsapp',{location:'hero'});" style="border:1.5px solid rgba(255,255,255,.32); color:#fff; font-weight:600; font-size:16px; padding:16px 28px; border-radius:5px;">WhatsApp +91 98117 95980</a>
       </div>
       <div style="display:flex; align-items:center; gap:10px; color:#9aa3b5; font-size:15px; font-style:italic; font-family:'Playfair Display',serif;">Limited seats — small batches, so every student gets seen.</div>
     </div>
@@ -221,25 +229,25 @@
         <div class="lbl" style="color:#c08a1e; margin-bottom:12px;">Free resources</div>
         <h2 style="font-family:'Playfair Display',serif; font-size:38px; font-weight:700; color:#15223f; margin:0;">A quick taste of what your child will get</h2>
       </div>
-      <a href="resources.html" style="background:#1b2a4b; color:#fff; font-weight:700; font-size:15px; padding:13px 20px; border-radius:6px;">View all resources</a>
+      <a href="resources.html" onclick="gtag('event','select_content',{content_type:'cta',cta_id:'resources_view_all'});" style="background:#1b2a4b; color:#fff; font-weight:700; font-size:15px; padding:13px 20px; border-radius:6px;">View all resources</a>
     </div>
 
     <p style="font-size:17px; line-height:1.6; color:#6a7184; max-width:700px; margin:0 0 28px;">A few starter resources to help students feel the quality of teaching before they commit to a batch.</p>
 
     <div class="m-rgrid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
-      <a href="resources.html" style="display:block; border:1px solid #e7ddc8; border-radius:10px; padding:26px 22px; background:#faf7f0; transition:all .2s ease;">
+      <a href="resources.html" onclick="gtag('event','select_content',{content_type:'cta',cta_id:'resources_preview_grade_9'});" style="display:block; border:1px solid #e7ddc8; border-radius:10px; padding:26px 22px; background:#faf7f0; transition:all .2s ease;">
         <div class="lbl" style="font-size:11px; color:#c08a1e; margin-bottom:12px;">Grade 9</div>
         <div style="font-family:'Playfair Display',serif; font-size:22px; font-weight:600; color:#15223f; margin-bottom:8px;">Foundation notes</div>
         <div style="font-size:15px; color:#6a7184; line-height:1.5; margin-bottom:16px;">Starter chapter notes and revision material for a strong maths base.</div>
         <div style="font-weight:700; font-size:14px; color:#1b2a4b;">Open resources →</div>
       </a>
-      <a href="resources.html" style="display:block; border:1px solid #e7ddc8; border-radius:10px; padding:26px 22px; background:#faf7f0; transition:all .2s ease;">
+      <a href="resources.html" onclick="gtag('event','select_content',{content_type:'cta',cta_id:'resources_preview_grade_10'});" style="display:block; border:1px solid #e7ddc8; border-radius:10px; padding:26px 22px; background:#faf7f0; transition:all .2s ease;">
         <div class="lbl" style="font-size:11px; color:#c08a1e; margin-bottom:12px;">Grade 10</div>
         <div style="font-family:'Playfair Display',serif; font-size:22px; font-weight:600; color:#15223f; margin-bottom:8px;">Key formula sheets</div>
         <div style="font-size:15px; color:#6a7184; line-height:1.5; margin-bottom:16px;">Revision sheets that make difficult chapters easier to recall in exams.</div>
         <div style="font-weight:700; font-size:14px; color:#1b2a4b;">Open resources →</div>
       </a>
-      <a href="resources.html" style="display:block; border:1px solid #e7ddc8; border-radius:10px; padding:26px 22px; background:#faf7f0; transition:all .2s ease;">
+      <a href="resources.html" onclick="gtag('event','select_content',{content_type:'cta',cta_id:'resources_preview_grade_11'});" style="display:block; border:1px solid #e7ddc8; border-radius:10px; padding:26px 22px; background:#faf7f0; transition:all .2s ease;">
         <div class="lbl" style="font-size:11px; color:#c08a1e; margin-bottom:12px;">Grade 11</div>
         <div style="font-family:'Playfair Display',serif; font-size:22px; font-weight:600; color:#15223f; margin-bottom:8px;">Practice sets</div>
         <div style="font-size:15px; color:#6a7184; line-height:1.5; margin-bottom:16px;">Chapter-wise practice and mock-style tests to build confidence early.</div>
@@ -273,7 +281,7 @@
         <div class="lbl" style="color:#ed9f17; margin-bottom:18px;">Book a free trial</div>
         <h2 style="font-family:'Playfair Display',serif; font-size:50px; font-weight:700; color:#fff; line-height:1.08; margin:0 0 24px;">One free class.<br>No payment, no pressure.</h2>
         <p style="font-size:19px; line-height:1.6; color:#c3cad8; margin:0 0 38px; max-width:430px;">Tell us the grade and we'll suggest a batch and a trial slot. Reply usually same day.</p>
-        <a href="https://wa.me/919811795980?text=Hi%20Ankush%21%20I%27d%20like%20to%20enquire%20about%20your%20Grade%209-12%20Maths%20classes.%20Could%20you%20share%20the%20batch%20timings%20and%20free%20trial%20details%3F" style="display:flex; align-items:center; gap:14px; color:#fff; width:fit-content;">
+        <a href="https://wa.me/919811795980?text=Hi%20Ankush%21%20I%27d%20like%20to%20enquire%20about%20your%20Grade%209-12%20Maths%20classes.%20Could%20you%20share%20the%20batch%20timings%20and%20free%20trial%20details%3F" onclick="gtag('event','contact_whatsapp',{location:'contact'});" style="display:flex; align-items:center; gap:14px; color:#fff; width:fit-content;">
           <span style="width:46px;height:46px;border-radius:8px;background:rgba(237,159,23,.16);display:flex;align-items:center;justify-content:center;font-size:22px;">💬</span>
           <span><span style="display:block; font-size:13px; color:#9aa3b5;">WhatsApp / Call</span><span style="font-size:23px; font-weight:700; font-family:'Playfair Display',serif;">+91 98117 95980</span></span>
         </a>
@@ -351,6 +359,9 @@ class Component extends DCLogic {
   submitForm(e) {
     // real form POST targeting the hidden iframe — let the browser submit it natively.
     this.setState({ sending: true, error: false });
+    if (typeof gtag === 'function') {
+      gtag('event', 'generate_lead', { form_id: 'trial_booking', grade: this.state.selectedGrade || '' });
+    }
     setTimeout(() => this.setState({ sending: false, sent: true }), 900);
   }
 

@@ -3,6 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KZCZ2Z6FZ2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KZCZ2Z6FZ2');
+</script>
 <title>Resources — Maths with Ankush</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,7 +42,7 @@
       <a href="index.html#results" style="color:#c3cad8;">What you get</a>
       <a href="index.html#faq" style="color:#c3cad8;">FAQ</a>
     </nav>
-    <a href="index.html#contact" style="background:#ed9f17; color:#1b2a4b; font-weight:700; font-size:14.5px; padding:11px 22px; border-radius:4px;">Book free trial</a>
+    <a href="index.html#contact" onclick="gtag('event','select_content',{content_type:'cta',cta_id:'header_book_trial',page:'resources'});" style="background:#ed9f17; color:#1b2a4b; font-weight:700; font-size:14.5px; padding:11px 22px; border-radius:4px;">Book free trial</a>
   </header>
 
   <main style="max-width:1100px; margin:0 auto; padding:64px 64px 96px;">
@@ -44,25 +52,25 @@
     <p style="font-size:18px; line-height:1.6; color:#6a7184; max-width:700px; margin:0 0 34px;">Pick the grade your child is in to explore the notes, tests and revision resources designed for that level.</p>
 
     <div class="grade-grid">
-      <a class="grade-card" href="grade-9.html">
+      <a class="grade-card" href="grade-9.html" onclick="gtag('event','select_content',{content_type:'cta',cta_id:'grade_9'});">
         <div class="meta">Grade 9</div>
         <h2 style="font-family:'Playfair Display',serif; font-size:30px; font-weight:700; color:#15223f; margin:16px 0 10px;">Foundation resources</h2>
         <p style="font-size:16px; line-height:1.55; color:#5d667a; margin:0;">Concept notes, revision sheets, and starter practice for a strong maths base.</p>
       </a>
 
-      <a class="grade-card" href="grade-10.html">
+      <a class="grade-card" href="grade-10.html" onclick="gtag('event','select_content',{content_type:'cta',cta_id:'grade_10'});">
         <div class="meta">Grade 10</div>
         <h2 style="font-family:'Playfair Display',serif; font-size:30px; font-weight:700; color:#15223f; margin:16px 0 10px;">Board prep resources</h2>
         <p style="font-size:16px; line-height:1.55; color:#5d667a; margin:0;">Formula sheets, solved practice material, and revision support for exam confidence.</p>
       </a>
 
-      <a class="grade-card" href="grade-11.html">
+      <a class="grade-card" href="grade-11.html" onclick="gtag('event','select_content',{content_type:'cta',cta_id:'grade_11'});">
         <div class="meta">Grade 11</div>
         <h2 style="font-family:'Playfair Display',serif; font-size:30px; font-weight:700; color:#15223f; margin:16px 0 10px;">Practice sets & tests</h2>
         <p style="font-size:16px; line-height:1.55; color:#5d667a; margin:0;">Chapter-wise tests and structured practice for building consistency and speed.</p>
       </a>
 
-      <a class="grade-card" href="grade-12.html">
+      <a class="grade-card" href="grade-12.html" onclick="gtag('event','select_content',{content_type:'cta',cta_id:'grade_12'});">
         <div class="meta">Grade 12</div>
         <h2 style="font-family:'Playfair Display',serif; font-size:30px; font-weight:700; color:#15223f; margin:16px 0 10px;">Board + competitive prep</h2>
         <p style="font-size:16px; line-height:1.55; color:#5d667a; margin:0;">High-priority revision resources and formula sets designed for exam performance.</p>

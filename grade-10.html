@@ -3,6 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KZCZ2Z6FZ2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KZCZ2Z6FZ2');
+</script>
 <title>Grade 10 Resources — Maths with Ankush</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,7 +49,7 @@
       </select>
       <a href="index.html#faq" style="color:#c3cad8;">FAQ</a>
     </nav>
-    <a href="index.html#contact" style="background:#ed9f17; color:#1b2a4b; font-weight:700; font-size:14.5px; padding:11px 22px; border-radius:4px;">Book free trial</a>
+    <a href="index.html#contact" onclick="gtag('event','select_content',{content_type:'cta',cta_id:'header_book_trial',page:'grade-10'});" style="background:#ed9f17; color:#1b2a4b; font-weight:700; font-size:14.5px; padding:11px 22px; border-radius:4px;">Book free trial</a>
   </header>
 
   <main style="max-width:1100px; margin:0 auto; padding:64px 64px 96px;">
@@ -77,7 +85,7 @@
   });
 
   function cardHtml(r) {
-    return '<a href="' + r.file + '" download style="display:block; border:1px solid #e7ddc8; border-radius:8px; padding:28px 26px; background:#faf7f0;">' +
+    return '<a href="' + r.file + '" download onclick="gtag(&#39;event&#39;,&#39;resource_download_click&#39;,{grade:&#39;Grade 10&#39;});" style="display:block; border:1px solid #e7ddc8; border-radius:8px; padding:28px 26px; background:#faf7f0;">' +
       '<div class="lbl" style="font-size:11px; color:#c08a1e; margin-bottom:14px;">' + r.type + '</div>' +
       '<div style="font-family:\'Playfair Display\',serif; font-size:22px; font-weight:600; color:#15223f; margin-bottom:8px;">' + r.title + '</div>' +
       '<div style="font-size:14.5px; color:#6a7184; line-height:1.5; margin-bottom:20px;">' + r.desc + '</div>' +
