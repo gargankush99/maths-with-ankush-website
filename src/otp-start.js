@@ -3,7 +3,7 @@
 // Google Apps Script mailer to email it to the student.
 
 const OTP_TTL_SECONDS = 600; // 10 minutes
-const RESEND_COOLDOWN_SECONDS = 45;
+const RESEND_COOLDOWN_SECONDS = 60; // Cloudflare KV requires expirationTtl >= 60 seconds
 
 export async function handleOtpStart(request, env) {
   if (!env.TUTOR_KV) return json({ error: "Server not configured (KV missing)." }, 500);
