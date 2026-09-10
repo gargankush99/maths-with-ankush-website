@@ -1,0 +1,12 @@
+# Files that should NOT be uploaded as public static assets — they're
+# either Worker source code (bundled into the script separately) or
+# repo/dev-only files with no reason to be web-accessible.
+src/
+functions/
+setup/
+node_modules/
+.git/
+.gitignore
+.assetsignore
+wrangler.jsonc
+README.md
