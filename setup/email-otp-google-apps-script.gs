@@ -1,5 +1,4 @@
 /**
-* OTP_MAILER_URL ; Web App URL : https://script.google.com/macros/s/AKfycbzK3uN0hw_dPRHWM64pJYZWTDeXm3cykuOFd9uH8CsY8AZzSx6RcfXgA6bYTmlcq1-1/exec
  * Email OTP mailer for the "Maths with Ankush" AI Tutor.
  *
  * WHY THIS EXISTS: Cloudflare Pages Functions can't send email on their
